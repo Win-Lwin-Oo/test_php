@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Article;
 
 class ArticleController extends Controller
 {
     public function index()
     {
-        return "Controller - Article List";
+        $data = Article::all();
+
+        // or view('articles.index')
+        return view('articles/index',[
+            'articles' => $data
+        ]);
     }
 
     public function detail($id)

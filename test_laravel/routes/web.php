@@ -45,3 +45,5 @@ Route::get('/articles/more', function () {
 Route::get('/articles/detail', function () {
     return 'Article more detail';
 })->name('articles.detail'); // set route name
+
+Route::get('/products', 'Product\ProductController@index'); // take care , not (/) , (\) is right in controler namespace path
