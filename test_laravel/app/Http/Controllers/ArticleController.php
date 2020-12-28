@@ -9,16 +9,20 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $data = Article::all();
+        //$data = Article::all();
+        $data = Article::first()->paginate(5);
 
         // or view('articles.index')
-        return view('articles/index',[
+        return view('articles/index', [
             'articles' => $data
         ]);
     }
 
     public function detail($id)
     {
-        return "Controller - Article Detail - $id";
+        $data = Article::find($id);
+        return view('articles.detail', [
+            'article' => $data
+        ]);
     }
 }
