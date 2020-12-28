@@ -47,3 +47,7 @@ Route::get('/articles/detail', function () {
 })->name('articles.detail'); // set route name
 
 Route::get('/products', 'Product\ProductController@index'); // take care , not (/) , (\) is right in controler namespace path
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
