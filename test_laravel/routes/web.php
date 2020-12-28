@@ -52,3 +52,7 @@ Route::get('/products', 'Product\ProductController@index'); // take care , not (
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/articles/add', 'ArticleController@add');
+Route::post('/articles/add', 'ArticleController@create');
+Route::get('/articles/delete/{id}', 'ArticleController@delete');
