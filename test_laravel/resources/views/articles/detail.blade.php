@@ -20,9 +20,15 @@
         </li>
         @foreach($article->comments as $comment)
         <li class="list-group-item">
-            {{ $comment->content }}
+            {{ $comment->content }} <a href="/comments/delete/{{$comment -> id}}">Delete</a>
         </li>
         @endforeach
     </ul>
+    <form action="{{ url('/comments/add') }}" method="post">
+        @csrf
+        <input type="hidden" name="article_id" value="{{ $article->id }}">
+        <textarea name="content" class="form-control mb-2" placeholder="New Comment"></textarea>
+        <input type="submit" value="Add Comment" class="btn btn-secondary">
+    </form>
 </div>
 @endsection
