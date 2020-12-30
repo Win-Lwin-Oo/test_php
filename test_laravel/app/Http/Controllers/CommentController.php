@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
@@ -25,6 +26,7 @@ class CommentController extends Controller
         $comment = new Comment;
         $comment->content = request()->content;
         $comment->article_id = request()->article_id;
+        $comment->user_id = auth()->user()->id;
         $comment->save();
         return back();
     }
@@ -32,7 +34,18 @@ class CommentController extends Controller
     public function delete($id)
     {
         $comment = Comment::find($id);
-        $comment->delete();
-        return back();
+        // if ($comment->user_id == auth()->user()->id) {
+        //     $comment->delete();
+        //     return back();
+        // } else {
+        //     return back()->with('error', 'Unauthorize');
+        // }
+
+        if (Gate::allows('comment-delete', $comment)) {
+            $comment->delete();
+            return back();
+        } else {
+            return back()->with('error', 'Unauthorize');
+        }
     }
 }

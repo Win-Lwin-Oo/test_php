@@ -25,6 +25,7 @@ class CommentFactory extends Factory
             //
             "content" => 'Hello',
             "article_id" => rand(1, 20),
+            "user_id" => rand(1, 2),
         ];
     }
 }

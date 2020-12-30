@@ -29,7 +29,14 @@
         </li>
         @foreach($article->comments as $comment)
         <li class="list-group-item">
-            {{ $comment->content }} <a href="/comments/delete/{{$comment -> id}}">Delete</a>
+            {{ $comment->content }}
+            <a href="{{ url("/comments/delete/$comment->id") }}" class="close">
+                &times;
+            </a>
+            <div class="small mt-2">
+                By <b>{{ $comment->user->name }}</b>,
+                {{ $comment->created_at->diffForHumans() }}
+            </div>
         </li>
         @endforeach
     </ul>
