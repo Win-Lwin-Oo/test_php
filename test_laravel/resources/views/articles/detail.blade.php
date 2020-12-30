@@ -1,6 +1,15 @@
 @extends("layouts.app")
 @section("content")
 <div class="container">
+    @if($errors->any())
+    <div class="alert alert-warning">
+        <ol>
+            @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ol>
+    </div>
+    @endif
     <div class="card mb-2">
         <div class="card-body">
             <h5 class="card-title">{{ $article->title }}</h5>
